@@ -140,11 +140,3 @@ the released-baseline column.
 - **Baseline budget.** TimeDiff is trained for a reduced step budget relative to its default
   schedule, as documented in the paper and in the `TimeDiff_TSTR_*` notebooks. The mask-channel
   result, which carries the paper's claim, is unaffected by this budget.
-
----
-
-## 7. License
-
-Released for research use; see `LICENSE`. The datasets (MIMIC-IV and eICU) are governed
-separately by the PhysioNet Credentialed Health Data Use Agreement and are not redistributed
-here.
