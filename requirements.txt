@@ -1,0 +1,37 @@
+# =============================================================================
+# RecordDiff - Python dependencies
+#
+# NOTE FOR REPRODUCIBILITY: the version bounds below are compatible lower bounds
+# that install and run the code. For an exact-reproduction record, replace them
+# with the pinned versions from your own environment:
+#     pip freeze > requirements.lock.txt
+# and commit that lock file alongside this one.
+# =============================================================================
+
+# --- core numerics ---
+numpy>=1.24
+scipy>=1.10
+pandas>=1.5
+
+# --- machine learning ---
+torch>=2.0                # RecordDiff model, diffusion decoder, amortized-VI encoder
+scikit-learn>=1.2         # PCA, scalers, downstream classifiers, AUROC/metrics
+
+# --- statistics (controlled experiment: FDR / significance testing) ---
+statsmodels>=0.14         # Benjamini-Hochberg correction (multipletests); omit if implemented manually
+
+# --- plotting / figures ---
+matplotlib>=3.6
+
+# --- utilities ---
+tqdm>=4.64                # progress bars
+
+# =============================================================================
+# Optional, only needed for specific steps:
+# =============================================================================
+# pyarrow>=12.0           # faster reading of MIMIC-IV / eICU parquet or CSV files (cohort notebooks 01-02)
+# cairosvg>=2.7           # only for fig_architecture.py (SVG -> PDF conversion)
+#
+# The TimeDiff baseline (notebook 11) has its own dependencies; follow the setup
+# instructions in that notebook. They are intentionally not merged here to keep
+# the core environment minimal.
