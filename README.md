@@ -96,7 +96,6 @@ Baseline (TimeDiff, via the interleaving adapter)
 
 Support
   requirements.txt
-  LICENSE
   README.md
 ```
 
