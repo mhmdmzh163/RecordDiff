@@ -32,10 +32,12 @@ Data Use Agreement. To reproduce results you must obtain the datasets yourself: 
 required credentialing on PhysioNet, download MIMIC-IV and eICU, then point the notebooks at
 your local copy.
 
-**Preprocessing is built into the two audit notebooks.** `Mask_Channel_Audit_MIMIC_IV.ipynb`
-and `Mask_Channel_Audit_eICU.ipynb` each construct their cohort from the raw PhysioNet tables
-(cohort selection, the 48-hour window, and the `(N, T, V)` mask and value tensors) and cache the
-result. Every other notebook consumes those cached cohorts. Run the two audit notebooks first.
+**Cohort construction.** The MIMIC-IV cohort is built inside `Mask_Channel_Audit_MIMIC_IV.ipynb`,
+which selects the cohort, applies the 48-hour window, assembles the `(N, T, V)` mask and value
+tensors, and caches the result before running its audit. The eICU cohort is built by a dedicated
+notebook, `eICU_Cohort_Construction.ipynb`, which performs the same steps and caches the eICU
+cohort. Every other notebook, including `Mask_Channel_Audit_eICU.ipynb`, consumes these cached
+cohorts, so run `Mask_Channel_Audit_MIMIC_IV.ipynb` and `eICU_Cohort_Construction.ipynb` first.
 
 Set your paths once, at the top of each notebook or via environment variables, and do not commit
 anything under them:
@@ -64,9 +66,10 @@ training. The audits and the controlled experiment run on CPU, though more slowl
 ## 4. Repository structure
 
 ```
-Data preparation + mask-channel audit  (these build and cache the cohorts)
-  Mask_Channel_Audit_MIMIC_IV.ipynb   Build MIMIC-IV cohort; model-free mask-channel audit (Table 1)
-  Mask_Channel_Audit_eICU.ipynb       Build eICU cohort; model-free mask-channel audit (eICU)
+Data preparation and mask-channel audit
+  Mask_Channel_Audit_MIMIC_IV.ipynb   Build the MIMIC-IV cohort; model-free mask-channel audit (Table 1)
+  eICU_Cohort_Construction.ipynb      Build and cache the eICU cohort from the raw PhysioNet tables
+  Mask_Channel_Audit_eICU.ipynb       Model-free mask-channel audit on eICU (uses the cached cohort)
 
 Model
   RecordDiff_Model_Train.ipynb        RecordDiff: state-space latent, Bernoulli measurement policy,
@@ -105,13 +108,14 @@ generators are configurations in `Controlled_Experiment.ipynb`; the MAR-restrict
 
 ## 5. Reproducing the paper
 
-Suggested run order: build the cohorts (the two audit notebooks), train the model, then run the
-evaluation notebooks. `Controlled_Experiment.ipynb` is fully synthetic and self-contained, so it
+Suggested run order: build the cohorts (`Mask_Channel_Audit_MIMIC_IV.ipynb` for MIMIC-IV and
+`eICU_Cohort_Construction.ipynb` for eICU), train the model, then run the evaluation notebooks. `Controlled_Experiment.ipynb` is fully synthetic and self-contained, so it
 can be run on its own without any PhysioNet data.
 
 | Paper item | Notebook(s) |
 |---|---|
 | Table 1 (mask-channel audit, MIMIC-IV) | `Mask_Channel_Audit_MIMIC_IV.ipynb` |
+| eICU cohort construction (prerequisite for all eICU results) | `eICU_Cohort_Construction.ipynb` |
 | Mask-channel audit, eICU | `Mask_Channel_Audit_eICU.ipynb` |
 | Controlled MNAR sweep (figure) | `Controlled_Experiment.ipynb` |
 | Semi-synthetic recovery (rank corr. 0.96) | `SemiSynthetic_recovery.ipynb` |
