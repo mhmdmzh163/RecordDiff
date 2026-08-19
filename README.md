@@ -1,5 +1,7 @@
 # Modeling Recorded Reality: Informative-Missingness-Aware Generation of Clinical Time Series
 
+##Mohamad Mazeh & Razane Tajeddine
+
 This repository contains the model (**RecordDiff**), the two evaluation methodologies (channel-decomposition transfer and
 the dual-channel privacy audit), and the notebooks that reproduce every table and figure in the paper. 
 
