@@ -2,6 +2,7 @@
 
 This repository contains the model (**RecordDiff**), the two evaluation methodologies (channel-decomposition transfer and
 the dual-channel privacy audit), and the notebooks that reproduce every table and figure in the paper. 
+
 ---
 
 ## 1. Overview
