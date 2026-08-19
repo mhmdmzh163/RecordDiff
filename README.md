@@ -1,13 +1,7 @@
 # Modeling Recorded Reality: Informative-Missingness-Aware Generation of Clinical Time Series
 
-Anonymized code release for the submission of the same title. This repository contains the
-model (**RecordDiff**), the two evaluation methodologies (channel-decomposition transfer and
-the dual-channel privacy audit), and the notebooks that reproduce every table and figure in
-the paper.
-
-> **Anonymity.** This repository is anonymized for double-blind review. It contains no author,
-> institution, or affiliation information. Please do not attempt to de-anonymize it.
-
+This repository contains the model (**RecordDiff**), the two evaluation methodologies (channel-decomposition transfer and
+the dual-channel privacy audit), and the notebooks that reproduce every table and figure in the paper. 
 ---
 
 ## 1. Overview
